@@ -3,7 +3,7 @@ const sequelize = require('../db');
 const Player = require('./player');
 const Session = require('./session');
 
-const Player_Session = sequlize.define('player-session', {
+const Player_Session = sequelize.define('player-session', {
     score: {
         type: Sequelize.INTEGER
     }
