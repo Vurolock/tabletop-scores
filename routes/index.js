@@ -13,7 +13,7 @@ router.route('/')
 
 
 // Setting up routes
-router.route('/games?')
+router.route('/scores?')
   .get((req, res) => {
     Score.findAll({include: [
       {model: Player, required: true},
@@ -22,13 +22,28 @@ router.route('/games?')
     ]
   })
     .then(allScores => {
-      console.log(allScores)
       res.render('score-list', {
         title: 'Scores',
         scores: allScores
       });
     });
-  });
+  })
+  .post((req, res) => {
+      Session.create({
+        gameId: req.body.gameId
+      })
+        .then((sesh) => {
+          for (let i = 0; i < req.body.name.length; i++) {
+            Score.create({
+              score: req.body.score[i],
+              playerId: req.body.name[i],
+              sessionId: sesh.id,
+              gameId: req.body.gameId
+            });
+          }
+        });
+    });
+  
 
 
 router.route('/session/new')
@@ -38,10 +53,9 @@ router.route('/session/new')
       res.render('session-form', {
         title: 'Log New Session',
         games: g
-      })
-    })
-    
-  })
+      });
+    });
+  });
 
 
 module.exports = router;
