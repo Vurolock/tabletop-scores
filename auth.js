@@ -48,7 +48,7 @@ const setupAuth = (app) => {
     app.use(passport.initialize());
     app.use(passport.session());
 
-    app.get('/login', passport.authenticate('google'));
+    app.get('/login', passport.authenticate('google', { scope: ['profile', 'email'] }));
     app.get('/logout', (req, res, next) => {
         console.log('logging out');
         req.logout();
