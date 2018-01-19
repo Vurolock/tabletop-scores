@@ -9,7 +9,6 @@ const Session = sequelize.define('session', {
 });
 
 Session.belongsTo(Game);
-
 Session.sync()
 
 module.exports = Session;
