@@ -5,6 +5,18 @@ const Session = require('./session');
 const Game = sequelize.define('game', {
     name: {
         type: Sequelize.STRING
+    },
+    designer: {
+        type: Sequelize.STRING
+    },
+    publisher: {
+        type: Sequelize.STRING
+    },
+    play_time: {
+        type: Sequelize.STRING
+    },
+    player_count: {
+        type: Sequelize.STRING
     }
 });
 
