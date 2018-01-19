@@ -8,6 +8,4 @@ const Game = sequelize.define('game', {
     }
 });
 
-Game.hasMany(Session);
-
 module.exports = Game;
