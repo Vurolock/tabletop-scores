@@ -11,23 +11,23 @@ router.route('/')
   res.render('index', { title: 'Tabletop Scores' });
 });
 // Setting up routes
-router.route('/session')
+router.route('/games?')
   .get((req, res) => {
     Score.findAll({include: [
-      {model: Game, required: true},
       {model: Player, required: true},
-      {model: Session, required: true}
+      {model: Session, required: true},
+      {model: Game, required: true}
     ]
   })
-  // // WORKING ON THIS
-  //   .then(allSessions => {
-
-  //     res.render('session-list', {
-  //       sessions: allSessions,
-  //       title: 'Sessions'
-  //     });
-  //   })
-  })
+  // WORKING ON THIS
+    .then(allScores => {
+      console.log(allScores)
+      res.render('score-list', {
+        title: 'Scores',
+        scores: allScores
+      });
+    });
+  });
 
 
 

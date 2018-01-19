@@ -15,4 +15,47 @@ Player.sync({ force: true })
     })
     .then(() => {
         console.log('Tables created.');
-    });
+    })
+    .then(() => {
+        return Player.create({
+            name: 'Seth Zim',
+            email: 'hello@gg.com'
+        });
+    })
+    .then(() => {
+        return Player.create({
+            name: 'Andrew Kel',
+            email: 'adrew@gg.com'
+        });
+    })
+    .then(() => {
+        return Game.create({
+            name: '7 Wonders',
+            designer: 'Antoine Bauza',
+            publisher: 'Dude Games',
+            player_range: '3-7',
+            play_time: '30-60min'
+        })
+    })
+    .then(() => {
+        return Session.create({
+            gameId: 1,
+            player_count: 2
+        });
+    })
+    .then(() => {
+        return Score.create({
+            score: 23,
+            playerId: 2,
+            sessionId: 1,
+            gameId: 1
+        });
+    })
+    .then(() => {
+        return Score.create({
+            score: 22,
+            playerId: 1,
+            sessionId: 1,
+            gameId: 1
+        });
+    })

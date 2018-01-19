@@ -15,7 +15,7 @@ const Game = sequelize.define('game', {
     play_time: {
         type: Sequelize.STRING
     },
-    player_count: {
+    player_range: {
         type: Sequelize.STRING
     }
 });
