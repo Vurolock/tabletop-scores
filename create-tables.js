@@ -38,6 +38,24 @@ Player.sync({ force: true })
         })
     })
     .then(() => {
+        return Game.create({
+            name: 'Carcassonne',
+            designer: 'A Person',
+            publisher: 'Dudette Games',
+            player_range: '2-5',
+            play_time: '30-45min'
+        })
+    })
+    .then(() => {
+        return Game.create({
+            name: 'Pandemic',
+            designer: 'Matt Leacock',
+            publisher: 'Gamey Games',
+            player_range: '2-4',
+            play_time: '45-60min'
+        })
+    })
+    .then(() => {
         return Session.create({
             gameId: 1,
             player_count: 2

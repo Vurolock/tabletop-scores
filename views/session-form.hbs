@@ -1,0 +1,28 @@
+<h1>{{title}}</h1>
+<div class="container">
+    <form action="/scores" method="POST">
+        <div class="form-group">
+            <label for="game">Choose your game:</label>
+                <select multiple name="game" id="game" class="form-control" size="8">
+                    {{#each games}}
+                    <option value={{id}}>{{name}}</option>
+                    {{/each}}
+                </select>
+        </div>
+        <a href="#">Don't see your game? Add it here!</a><br>
+        <button type="button" class="btn btn-info" style="margin:1em 0 .5em 0" id="add-player-btn">Add Player +</button>
+        <div class="form-row" id="player-row">
+            <div class="form-group col-sm-8">
+                <label for="players">Player Name</label>
+                <input type="text" class="form-control" id="players">
+            </div>
+            <div class="form-group col-sm-4">
+                <label for="score">Score</label>
+                <input type="text" class="form-control" id="score">
+            </div>
+            
+        </div>
+        <button type="button" class="btn btn-primary col-sm-3">Submit</button>
+    </form>
+</div>
+

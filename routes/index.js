@@ -10,6 +10,8 @@ router.route('/')
   .get((req, res, next) => {
   res.render('index', { title: 'Tabletop Scores' });
 });
+
+
 // Setting up routes
 router.route('/games?')
   .get((req, res) => {
@@ -19,7 +21,6 @@ router.route('/games?')
       {model: Game, required: true}
     ]
   })
-  // WORKING ON THIS
     .then(allScores => {
       console.log(allScores)
       res.render('score-list', {
@@ -29,6 +30,18 @@ router.route('/games?')
     });
   });
 
+
+router.route('/session/new')
+  .get((req, res) => {
+    Game.findAll()
+    .then(g => {
+      res.render('session-form', {
+        title: 'Log New Session',
+        games: g
+      })
+    })
+    
+  })
 
 
 module.exports = router;
