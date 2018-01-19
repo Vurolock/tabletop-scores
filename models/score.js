@@ -3,6 +3,7 @@ const sequelize = require('../db');
 
 const Player = require('./player');
 const Session = require('./session');
+const Game = require('./game');
 
 const Score = sequelize.define('score', {
     score: {
@@ -12,5 +13,6 @@ const Score = sequelize.define('score', {
 
 Score.belongsTo(Player);
 Score.belongsTo(Session);
+Score.belongsTo(Game);
 
 module.exports = Score;
