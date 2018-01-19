@@ -13,6 +13,4 @@ const Player = sequelize.define('player', {
     }
 });
 
-Player.sync()
-
 module.exports = Player;
