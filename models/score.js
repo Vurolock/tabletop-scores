@@ -1,15 +1,16 @@
 const Sequelize = require('sequelize');
 const sequelize = require('../db');
+
 const Player = require('./player');
 const Session = require('./session');
 
-const Player_Session = sequlize.define('player-session', {
+const Score = sequelize.define('score', {
     score: {
         type: Sequelize.INTEGER
     }
 });
 
-Player_Session.belongsTo(Player);
-Player_Session.belongsTo(Session);
+Score.belongsTo(Player);
+Score.belongsTo(Session);
 
-module.exports = Player_Session;
+module.exports = Score;
