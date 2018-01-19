@@ -1,5 +1,3 @@
-import { access } from 'fs';
-
 const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 const session = require('express-session');
