@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-const Player_Session = require('../models/player-session');
+const Score = require('../models/score');
 const Game = require('../models/game');
 const Player = require('../models/player');
 const Session = require('../models/session');
@@ -13,20 +13,20 @@ router.route('/')
 // Setting up routes
 router.route('/session')
   .get((req, res) => {
-    Player_Session.findAll({include: [
+    Score.findAll({include: [
       {model: Game, required: true},
       {model: Player, required: true},
       {model: Session, required: true}
     ]
   })
-  // WORKING ON THIS
-    .then(allSessions => {
+  // // WORKING ON THIS
+  //   .then(allSessions => {
 
-      res.render('session-list', {
-        sessions: allSessions,
-        title: 'Sessions'
-      });
-    })
+  //     res.render('session-list', {
+  //       sessions: allSessions,
+  //       title: 'Sessions'
+  //     });
+  //   })
   })
 
 
