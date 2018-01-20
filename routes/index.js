@@ -41,6 +41,9 @@ router.route('/scores?')
               gameId: req.body.gameId
             });
           }
+        })
+        .then(() => {
+          res.render('submit-success', {})
         });
     });
   
