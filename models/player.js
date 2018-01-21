@@ -9,7 +9,7 @@ const Player = sequelize.define('player', {
         type: Sequelize.STRING
     },
     google_id: {
-        type: Sequelize.INTEGER
+        type: Sequelize.STRING
     }
 });
 
