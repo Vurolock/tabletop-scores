@@ -61,7 +61,7 @@ const setupAuth = (app) => {
         (req, res) => {
             console.log('login successful');
             console.log(req.isAuthenticated());
-            res.redirect('/ ');
+            res.redirect('/');
         }
     );
 }
