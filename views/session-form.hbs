@@ -1,9 +1,9 @@
 <h1>{{title}}</h1>
 <div class="container">
-    <form action="/score" method="POST">
+    <form action="/score" method="POST" class="needs-validation">
         <div class="form-group">
             <label for="game">Choose your game:</label>
-                <select multiple name="gameId" id="game" class="form-control" size="8">
+                <select multiple name="gameId" id="game" class="form-control" size="8" required>
                     {{#each games}}
                     <option value={{id}}>{{name}}</option>
                     {{/each}}
@@ -15,11 +15,14 @@
         <div class="form-row" id="player-row">
             <div class="form-group col-sm-8">
                 <label for="players">Player Name</label>
-                <input type="text" class="form-control" id="players" name="name">
+                <input type="text" class="form-control" id="players" name="name" list="playerList" required>
+                <datalist id="playerList">
+                    {{!-- Data from /players requested to fill this element --}}
+                </datalist>
             </div>
             <div class="form-group col-sm-4">
                 <label for="score">Score</label>
-                <input type="text" class="form-control" id="score" name="score">
+                <input type="number" class="form-control" id="score" name="score">
             </div>
         </div>
         <button type="submit" class="btn btn-primary col-sm-3">Submit</button>

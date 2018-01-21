@@ -1,5 +1,17 @@
 const addPlayerBtn = $('#add-player-btn');
-const playerRow = $('#player-row')
+const playerRow = $('#player-row');
+const form = $('.needs-validation');
+const dataList = $('#playerList')
+
+
+$.get('/players')
+    .then((data) => {
+        // console.log(response, response.data);
+        let playerNames = data.map(entry => {
+            return dataList.append(`<option value="${entry.name}"></option>`);
+        });
+});
+
 
 addPlayerBtn.on('click', (event) => {
     console.log('Click')

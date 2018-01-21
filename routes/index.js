@@ -46,8 +46,15 @@ router.route('/scores?')
           res.render('submit-success', {})
         });
     });
-  
 
+router.route('/players')
+    .get((req, res) => {
+      Player.findAll()
+        .then(playas => {
+          res.json(playas);
+        })
+    })
+    
 
 router.route('/session/new')
   .get((req, res) => {
@@ -57,6 +64,13 @@ router.route('/session/new')
         title: 'Log New Session',
         games: g
       });
+    // }).then(() => {
+    //   Player.findAll()
+    //     .then(playas => {
+    //       res.render('session-form', {
+    //         playas: playas
+    //       });
+    //     });
     });
   });
 
