@@ -28,24 +28,7 @@ router.route('/scores?')
       });
     });
   })
-  .post((req, res) => {
-      Session.create({
-        gameId: req.body.gameId
-      })
-        .then((sesh) => {
-          for (let i = 0; i < req.body.name.length; i++) {
-            Score.create({
-              score: req.body.score[i],
-              playerId: req.body.name[i],
-              sessionId: sesh.id,
-              gameId: req.body.gameId
-            });
-          }
-        })
-        .then(() => {
-          res.render('submit-success', {})
-        });
-    });
+  
 
 router.route('/players')
     .get((req, res) => {
@@ -64,15 +47,30 @@ router.route('/session/new')
         title: 'Log New Session',
         games: g
       });
-    // }).then(() => {
-    //   Player.findAll()
-    //     .then(playas => {
-    //       res.render('session-form', {
-    //         playas: playas
-    //       });
-    //     });
     });
-  });
+  })
+  .post((req, res) => {
+    Session.create({
+      gameId: req.body.gameId
+    })
+      .then((sesh) => {
+        for (let i = 0; i < req.body.name.length; i++) {
+          Score.create({
+            score: req.body.score[i],
+            playerId: req.body.name[i],
+            sessionId: sesh.id,
+            gameId: req.body.gameId
+          });
+        }
+      })
+      .then(() => {
+        if (err) {
+          res.redirect('/session/new');
+        } else {
+          res.render('submit-success', {});
+        }
+      });
+  });;
 
 
 module.exports = router;

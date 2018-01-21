@@ -15,14 +15,18 @@ $.get('/players')
 
 addPlayerBtn.on('click', (event) => {
     console.log('Click')
+    if (err) throw err;
     playerRow.append(`<div class="form-row" id="player-row">
     <div class="form-group col-sm-8">
         <label for="players">Player Name</label>
-        <input type="text" class="form-control" id="players" name="name">
+        <input type="text" class="form-control" id="players" name="name" list="playerList" required>
+        <datalist id="playerList">
+           
+        </datalist>
     </div>
     <div class="form-group col-sm-4">
         <label for="score">Score</label>
-        <input type="text" class="form-control" id="score" name="score">
+        <input type="number" class="form-control" id="score" name="score">
     </div>
 </div>`)
 })

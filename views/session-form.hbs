@@ -1,6 +1,6 @@
 <h1>{{title}}</h1>
 <div class="container">
-    <form action="/score" method="POST" class="needs-validation">
+    <form action="/session/new" method="POST" class="needs-validation">
         <div class="form-group">
             <label for="game">Choose your game:</label>
                 <select multiple name="gameId" id="game" class="form-control" size="8" required>
@@ -17,7 +17,7 @@
                 <label for="players">Player Name</label>
                 <input type="text" class="form-control" id="players" name="name" list="playerList" required>
                 <datalist id="playerList">
-                    {{!-- Data from /players requested to fill this element --}}
+                   
                 </datalist>
             </div>
             <div class="form-group col-sm-4">
