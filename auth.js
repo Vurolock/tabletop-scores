@@ -21,10 +21,12 @@ const setupAuth = (app) => {
     }, (token, refreshToken, profile, done) => {
         
         Player.findOrCreate({ where: {
-            'google_id': profile.id
+            'google_id': profile.id,
+            'name': profile.displayName,
+            'email': profile.emails[0].value
         }})
         .then(result => {
-            let player = result[0];
+            let user = result[0];
             return done(null, user);
         })
         .catch(err => {
