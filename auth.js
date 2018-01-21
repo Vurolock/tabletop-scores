@@ -21,7 +21,7 @@ const setupAuth = (app) => {
     }, (token, refreshToken, profile, done) => {
         
         Player.findOrCreate({ where: {
-            'google.id': profile.id
+            'google_id': profile.id
         }})
         .then(result => {
             let player = result[0];
@@ -59,7 +59,7 @@ const setupAuth = (app) => {
         (req, res) => {
             console.log('login successful');
             console.log(req.isAuthenticated());
-            res.redirect('/');
+            res.redirect('/ ');
         }
     );
 }
