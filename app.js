@@ -30,6 +30,12 @@ setupAuth(app);
 
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use((req, res, next) => {
+  console.log('player authenticated:');
+  console.log(req.isAuthenticated());
+  next();
+});
+
 app.use('/', index);
 app.use('/users', users);
 
