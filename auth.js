@@ -17,14 +17,16 @@ const setupAuth = (app) => {
     passport.use(new GoogleStrategy({
         clientID: process.env.CLIENT_ID,
         clientSecret: process.env.CLIENT_SECRET,
-        callbackURL: "http://localhost:3000/google/auth"
-    }, (token, refreshToken, profile, done) => {
+        callbackURL: "http://localhost:3000/auth/google/callback"
+    }, (accessToken, refreshToken, profile, done) => {
         
         Player.findOrCreate({ where: {
-            'google_id': profile.id
+            'google_id': profile.id,
+            'name': profile.displayName,
+            'email': profile.emails[0].value
         }})
         .then(result => {
-            let player = result[0];
+            let user = result[0];
             return done(null, user);
         })
         .catch(err => {
@@ -48,18 +50,22 @@ const setupAuth = (app) => {
     app.use(passport.initialize());
     app.use(passport.session());
 
-    app.get('/login', passport.authenticate('google', { scope: ['profile', 'email'] }));
+    app.get('/auth/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
+
     app.get('/logout', (req, res, next) => {
         console.log('logging out');
-        req.logout();
-        res.redirect('/');
+        // req.logout();
+        req.session.destroy((err) => {
+            res.redirect('/');
+        });
     });
-    app.get('/google/auth',
-        passport.authenticate('google', { failureRedirect: '/login' }),
+
+    app.get('/auth/google/callback',
+        passport.authenticate('google', { failureRedirect: '/' }),
         (req, res) => {
             console.log('login successful');
             console.log(req.isAuthenticated());
-            res.redirect('/ ');
+            res.redirect('/');
         }
     );
 }
@@ -72,7 +78,7 @@ const ensureAuthenticated = (req, res, next) => {
     }
     
     console.log('auth all bad');
-    res.redirect('/login');
+    res.redirect('/auth/google');
 }
 
 module.exports = setupAuth;
