@@ -1,0 +1,23 @@
+<h1>{{title}}</h1>
+<form action="/games?/new" method="POST">
+    <div class="form-group">
+        <label for="game-name">Game Name</label>
+        <input type="text" class="form-control" id="game-name" placeholder="Settlers of Catan">
+    </div>
+    <div class="row">
+        <div class="col-sm-6">
+            <label for="designer">Designer</label>
+            <input type="text" class="form-control" id="designer" style="margin-bottom:1em" placeholder="Uwe Rosenberg">
+        </div>
+        <div class="col-sm-6">
+            <label for="publisher">Publisher</label>
+            <input type="text" class="form-control" id="publisher" placeholder="Fantasy Flight Games">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6">
+            <label for="play-time">Play Time</label>
+            <input type="text" class="form-control" id="play-time" placeholder="ex. 30-40">
+        </div>
+    </div>
+</form>
