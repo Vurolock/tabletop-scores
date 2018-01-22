@@ -57,8 +57,7 @@ Player.sync({ force: true })
     })
     .then(() => {
         return Session.create({
-            gameId: 1,
-            player_count: 2
+            gameId: 1
         });
     })
     .then(() => {
