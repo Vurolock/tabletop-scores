@@ -4,6 +4,7 @@ const Score = require('../models/score');
 const Game = require('../models/game');
 const Player = require('../models/player');
 const Session = require('../models/session');
+const _ = require('lodash');
 
 /* GET home page. */
 router.route('/')
@@ -50,14 +51,15 @@ router.route('/session/new')
     });
   })
   .post((req, res) => {
-    console.log(req.body)
+    console.log(req.body);
+    const score = _.isArray(req.body.score) ? req.body.score : [req.body.score];
     Session.create({
       gameId: req.body.gameId
     })
       .then((sesh) => {
-        for (let i = 0; i < req.body.score.length; i++) {
+        for (let i = 0; i < score.length; i++) {
           Score.create({
-            score: req.body.score[i],
+            score: score[i],
             playerId: req.body.name[i],
             sessionId: sesh.id,
             gameId: req.body.gameId
