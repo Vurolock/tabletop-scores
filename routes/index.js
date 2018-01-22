@@ -35,8 +35,8 @@ router.route('/players')
       Player.findAll()
         .then(playas => {
           res.json(playas);
-        })
-    })
+        });
+    });
     
 
 router.route('/session/new')
@@ -50,11 +50,12 @@ router.route('/session/new')
     });
   })
   .post((req, res) => {
+    console.log(req.body)
     Session.create({
       gameId: req.body.gameId
     })
       .then((sesh) => {
-        for (let i = 0; i < req.body.name.length; i++) {
+        for (let i = 0; i < req.body.score.length; i++) {
           Score.create({
             score: req.body.score[i],
             playerId: req.body.name[i],
@@ -64,11 +65,7 @@ router.route('/session/new')
         }
       })
       .then(() => {
-        if (err) {
-          res.redirect('/session/new');
-        } else {
-          res.render('submit-success', {});
-        }
+        res.render('submit-success', {});
       });
   });;
 
