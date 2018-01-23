@@ -1,8 +1,9 @@
 const $addPlayerBtn = $('#add-player-btn');
-const $playerRow = $('#player-row');
+const $playerRow = $('[data-player-row]');
 const $userSelect = $('#players')
 const $submitBtn = $('[data-submit]');
-const $playerGroup = $('[data-player-info]')
+const $playerGroup = $('[data-player-info]');
+// const $playerRowTarget = $('div[data-player-row]')
 // const $dataList = $('#playerList');
 
 $.get('/players')
