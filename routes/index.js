@@ -92,6 +92,26 @@ router.route('/game/new')
     });
 
 
+router.route('/game/update/:id')
+    .get((req, res) => {
+      Game.findOne({
+        where: {
+          id: req.params.id
+        }
+      })
+      .then(theGame => {
+        res.render('game-form', {
+          title: 'Update Game',
+          name: theGame.name,
+          designer: theGame.designer,
+          publisher: theGame.publisher,
+          playTime: theGame.play_time,
+          playerRange: theGame.player_range
+        });
+      });
+    });
+
+
 router.route('/session/new')
   .get((req, res) => {
     Game.findAll()
