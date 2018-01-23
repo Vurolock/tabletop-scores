@@ -1,1 +1,8 @@
-<h1>HI GUYS</h1>
+{{#unless name}}
+<h1>Welcome to Tabletop Scores.</h1>
+<p>Login and game on!</p>
+{{/unless}}
+{{#if name}}
+<h1>Hello, {{name}}</h1>
+<p>Let's play a game...</p>
+{{/if}}

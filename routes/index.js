@@ -8,15 +8,19 @@ const Session = require('../models/session');
 /* GET home page. */
 router.route('/')
 	.get((req, res, next) => {
-		Player.findOne({
-			where: {
-				id: req.user
-			}
-		}).then((result) => {
-			res.render('index', {
-				name: result.name,
+		if (req.isAuthenticated()) {
+			Player.findOne({
+				where: {
+					id: req.user
+				}
+			}).then((result) => {
+				res.render('index', {
+					name: result.name,
+				});
 			});
-		});
+		} else {
+			res.render('index');
+		}
 	});
 
 // Setting up routes
