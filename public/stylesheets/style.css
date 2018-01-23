@@ -15,32 +15,50 @@ a {
 	color: #00B7FF;
 }
 
-/* ~~~ Index - Logged in ~~~ */
+/* NAVBAR */
 
+.navbar-inverse .navbar-nav > li > a, .navbar-inverse .navbar-brand {
+	color: #ffffff;
+}
 
-/* ~~~ Index - Logged out ~~~ */
+.navbar-inverse .navbar-nav > li > a:hover, .navbar-inverse .navbar-brand:hover {
+	color: #5cb85c;
+}
 
-.small-welcome {
-	display: none;
+.navbar-inverse .navbar-toggle {
+	border-color: #999999;
+}
+
+.nav > li > a {
+	text-align: right;
+	padding-right: 25px;
+}
+
+/* INDEX */
+
+.logged-out, .logged-in {
+	margin: auto;
+	width: 505px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.goog-sign-in {
+	width: 210.66px;
+}
+
+.jigsaw {
+	width: 25px;
+	border-radius: 50%;
 }
 
 @media screen and (max-width: 605px) {
-	.logged-out {
-		margin: auto;
-		width: 220px;
-		display: flex;
-		flex-direction: column;
-	}
-	
-	.goog-sign-in {
+	.logged-out, .logged-in {
 		width: 220px;
 	}
 
-	.small-welcome {
-		display: block;
-	}
-
-	.big-welcome {
-		display: none;
+	.welcome {
+		font-size: 21px;
 	}
 }
