@@ -38,7 +38,11 @@ router.route('/games?')
 
 router.route('/players')
     .get((req, res) => {
-      Player.findAll()
+      Player.findAll({
+        order: [
+          ['createdAt', 'DESC']
+        ]
+      })
         .then(playas => {
           res.json(playas);
         });
@@ -61,7 +65,8 @@ router.route('/players')
       .then(result => {
         res.render('player-profile', {
           name: result[0].player.name,
-          session: result
+          session: result,
+          id: req.params.id
         });
       });
     });

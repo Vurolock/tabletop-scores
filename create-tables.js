@@ -29,6 +29,12 @@ Player.sync({ force: true })
         });
     })
     .then(() => {
+        return Player.create({
+            name: "Bob",
+            email: 'bob@bob.com'
+        })
+    })
+    .then(() => {
         return Game.create({
             name: '7 Wonders',
             designer: 'Antoine Bauza',
