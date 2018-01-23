@@ -13,8 +13,8 @@ router.route('/')
 });
 
 
-// Setting up routes
-router.route('/scores?')
+// Routes
+router.route('/scores')
   .get((req, res) => {
     Score.findAll({include: [
       {model: Player, required: true},
@@ -22,23 +22,75 @@ router.route('/scores?')
       {model: Game, required: true}
     ]
   })
-    .then(allScores => {
-      res.render('score-list', {
-        title: 'Scores',
-        scores: allScores
-      });
-    });
+  .then(scores => {
+    res.json(scores);
+    })
+  });
+
+router.route('/games?')
+  .get((req, res) => {
+    Game.findAll()
+    .then(g => {
+      res.json(g);
+    })
   })
   
 
 router.route('/players')
     .get((req, res) => {
-      Player.findAll()
+      Player.findAll({
+        order: [
+          ['createdAt', 'DESC']
+        ]
+      })
         .then(playas => {
           res.json(playas);
         });
     });
-    
+
+  router.route('/players?/:id')
+    .get((req, res) => {
+      Score.findAll({include: [
+        {model: Player, required: true},
+        {model: Session, required: true},
+        {model: Game, required: true}
+      ],
+      where: {
+        playerId: req.params.id
+      },
+      order: [
+        ['createdAt', 'DESC']
+      ]
+      })
+      .then(result => {
+        res.render('player-profile', {
+          name: result[0].player.name,
+          session: result,
+          id: req.params.id
+        });
+      });
+    });
+
+
+router.route('/game/new')
+    .get((req, res) => {
+      res.render('game-form', {
+        title: 'Enter New Game'
+      });
+    })
+    .post((req, res) => {
+      Game.create({
+        name: _.startCase(_.lowerCase(req.body.name)),
+        designer: _.startCase(_.lowerCase(req.body.designer)),
+        publisher: _.startCase(_.lowerCase(req.body.publisher)),
+        play_time: `${req.body.playTime}min`,
+        player_range: req.body.numPlayers
+      })
+      .then(() => {
+        res.redirect('/session/new');
+      });
+    });
+
 
 router.route('/session/new')
   .get((req, res) => {

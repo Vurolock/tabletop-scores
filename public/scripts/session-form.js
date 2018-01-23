@@ -16,20 +16,5 @@ $.get('/players')
 
 
 $addPlayerBtn.on('click', (event) => {
-    console.log('click')
     $playerRow.clone().appendTo($playerGroup);
-//     $playerGroup.append(`<div class="form-row" data-player-row>
-//     <div class="form-group col-sm-8">
-//         <label for="players${$playerRow.length}">Player Name</label>
-//         <select name="name" id="players${$playerRow.length}" class="form-control form-control-lg" required>
-
-//         </select>
-//     </div>
-//     <div class="form-group col-sm-4">
-//         <label for="score">Score</label>
-//         <input type="number" class="form-control" id="score${$playerRow.length}" name="score">
-//     </div>
-// </div>`)
-    console.log($playerRow);
-    console.log($('[data-player-row]').length);
 })

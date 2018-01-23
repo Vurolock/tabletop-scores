@@ -7,3 +7,21 @@ a {
   color: #00B7FF;
 }
 
+.form-entry {
+  display: flex;
+  width: 70%;
+  justify-content: center;
+  margin: 0 auto;
+  /* border: solid .5px gray; */
+  padding: 35px;
+  box-shadow: 0 2px rgba(161, 161, 161, 0.603);
+}
+
+.custom-panel {
+  margin: 15px 0 15px 0;
+}
+
+.user-title {
+  border-bottom: solid black 1.5px;
+  box-shadow: 0 2em gray;
+}
