@@ -5,7 +5,6 @@ const $submitBtn = $('[data-submit]');
 const $playerGroup = $('[data-player-info]')
 // const $dataList = $('#playerList');
 
-
 $.get('/players')
     .then((data) => {
         let playerNames = data.map(entry => {
@@ -13,8 +12,6 @@ $.get('/players')
             });
     });
 
-
 $addPlayerBtn.on('click', (event) => {
-    console.log('click')
     $playerRow.clone().appendTo($playerGroup);
 })
