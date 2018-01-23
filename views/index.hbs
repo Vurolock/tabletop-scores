@@ -1,1 +1,7 @@
-<h1>HI GUYS</h1>
+{{#unless name}}
+{{> logged-out}}
+{{/unless}}
+
+{{#if name}}
+{{> logged-in}}
+{{/if}}

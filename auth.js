@@ -37,13 +37,13 @@ const setupAuth = (app) => {
 
     passport.serializeUser((user, done) => {
         console.log('serializing');
-        console.log(user);
+        // console.log(user);
         done(null, user.id);
     });
 
     passport.deserializeUser((id, done) => {
         console.log('deserializing');
-        console.log(id);
+        // console.log(id);
         done(null, id);
     });
 

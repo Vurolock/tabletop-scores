@@ -8,9 +8,21 @@ const _ = require('lodash');
 
 /* GET home page. */
 router.route('/')
-  .get((req, res, next) => {
-  res.render('index', { title: 'Tabletop Scores' });
-});
+	.get((req, res, next) => {
+		if (req.isAuthenticated()) {
+			Player.findOne({
+				where: {
+					id: req.user
+				}
+			}).then((result) => {
+				res.render('index', {
+					name: result.name,
+				});
+			});
+		} else {
+			res.render('index');
+		}
+	});
 
 
 // Routes
@@ -164,6 +176,7 @@ router.route('/session/new')
         res.render('submit-success', {});
       });
   });;
+
 
 
 module.exports = router;

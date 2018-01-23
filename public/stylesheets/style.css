@@ -1,10 +1,66 @@
+html {
+	box-sizing: border-box;
+}
+
+*, *:before, *:after {
+	box-sizing: inherit;
+}
+
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+	padding: 50px;
+	font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 a {
-  color: #00B7FF;
+	color: #00B7FF;
+}
+
+/* NAVBAR */
+
+.navbar-inverse .navbar-nav > li > a, .navbar-inverse .navbar-brand {
+	color: #ffffff;
+}
+
+.navbar-inverse .navbar-nav > li > a:hover, .navbar-inverse .navbar-brand:hover {
+	color: #5cb85c;
+}
+
+.navbar-inverse .navbar-toggle {
+	border-color: #999999;
+}
+
+.nav > li > a {
+	text-align: right;
+	padding-right: 25px;
+}
+
+/* INDEX */
+
+.logged-out, .logged-in {
+	margin: auto;
+	width: 505px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.goog-sign-in {
+	width: 210.66px;
+}
+
+.jigsaw {
+	width: 25px;
+	border-radius: 50%;
+}
+
+@media screen and (max-width: 605px) {
+	.logged-out, .logged-in {
+		width: 220px;
+	}
+
+	.welcome {
+		font-size: 21px;
+	}
 }
 
 .form-entry {
@@ -25,3 +81,4 @@ a {
   border-bottom: solid black 1.5px;
   box-shadow: 0 2em gray;
 }
+
