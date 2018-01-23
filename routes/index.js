@@ -13,7 +13,7 @@ router.route('/')
 });
 
 
-// Setting up routes
+// Routes
 router.route('/scores?')
   .get((req, res) => {
     Score.findAll({include: [
@@ -28,7 +28,7 @@ router.route('/scores?')
         scores: allScores
       });
     });
-  })
+  });
   
 
 router.route('/players')
@@ -38,7 +38,27 @@ router.route('/players')
           res.json(playas);
         });
     });
-    
+
+
+router.route('/game/new')
+    .get((req, res) => {
+      res.render('game-form', {
+        title: 'Enter New Game'
+      });
+    })
+    .post((req, res) => {
+      Game.create({
+        name: _.startCase(_.lowerCase(req.body.name)),
+        designer: _.startCase(_.lowerCase(req.body.designer)),
+        publisher: _.startCase(_.lowerCase(req.body.publisher)),
+        play_time: `${req.body.playTime}min`,
+        player_range: req.body.numPlayers
+      })
+      .then(() => {
+        res.render('submit-success', {});
+      });
+    });
+
 
 router.route('/session/new')
   .get((req, res) => {
