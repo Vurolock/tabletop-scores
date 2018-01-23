@@ -1,0 +1,10 @@
+<h1>{{name}}</h1>
+
+
+<div class="scores-container" data-score-container>
+    {{#each session}}
+    <h3>{{game.name}}</h3>
+    <p>Score: {{score}}</p>
+    <p>Date: {{createdAt}}</p>
+    {{/each}}
+</div>

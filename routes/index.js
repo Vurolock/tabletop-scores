@@ -14,7 +14,7 @@ router.route('/')
 
 
 // Routes
-router.route('/scores?')
+router.route('/scores')
   .get((req, res) => {
     Score.findAll({include: [
       {model: Player, required: true},
@@ -22,12 +22,15 @@ router.route('/scores?')
       {model: Game, required: true}
     ]
   })
-    .then(allScores => {
-      res.render('score-list', {
-        title: 'Scores',
-        scores: allScores
-      });
-    });
+  .then(scores => {
+    res.json(scores);
+  })
+    // .then(allScores => {
+    //   res.render('score-list', {
+    //     title: 'Scores',
+    //     scores: allScores
+    //   });
+    // });
   });
 
 router.route('/games?')
@@ -46,6 +49,25 @@ router.route('/players')
           res.json(playas);
         });
     });
+
+  router.route('/player/:id')
+    .get((req, res) => {
+      Score.findAll({include: [
+        {model: Player, required: true},
+        {model: Session, required: true},
+        {model: Game, required: true}
+      ],
+      where: {
+        playerId: req.params.id
+      }
+      })
+      .then(result => {
+        res.render('player-profile', {
+          name: result[0].player.name,
+          session: result
+        })
+      })
+    })
 
 
 router.route('/game/new')
