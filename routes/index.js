@@ -29,6 +29,14 @@ router.route('/scores?')
       });
     });
   });
+
+router.route('/games?')
+  .get((req, res) => {
+    Game.findAll()
+    .then(g => {
+      res.json(g);
+    })
+  })
   
 
 router.route('/players')

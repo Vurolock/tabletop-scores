@@ -1,9 +1,9 @@
 <h1>{{title}}</h1>
 <div class="form-entry">
-    <form action="/game/new" method="POST">
+    <form action="/game/new" method="POST" class="needs-validation">
         <div class="form-group">
             <label for="name">Game Name</label>
-            <input type="text" class="form-control" id="game-name" name="name" placeholder="Settlers of Catan">
+            <input type="text" class="form-control" id="game-name" name="name" placeholder="Settlers of Catan" required>
         </div>
         <div class="row">
             <div class="col-sm-6">
