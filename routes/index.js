@@ -80,6 +80,7 @@ router.route('/game/new')
     })
     .post((req, res) => {
       Game.create({
+        action: 'new',
         name: _.startCase(_.lowerCase(req.body.name)),
         designer: _.startCase(_.lowerCase(req.body.designer)),
         publisher: _.startCase(_.lowerCase(req.body.publisher)),
@@ -101,6 +102,8 @@ router.route('/game/update/:id')
       })
       .then(theGame => {
         res.render('game-form', {
+          action: 'update',
+          id: req.params.id,
           title: 'Update Game',
           name: theGame.name,
           designer: theGame.designer,
@@ -108,6 +111,25 @@ router.route('/game/update/:id')
           playTime: theGame.play_time,
           playerRange: theGame.player_range
         });
+      });
+    })
+    .post((req, res) => {
+      Game.findOne({
+        where: {
+          id: req.params.id
+        }
+      })
+      .then(theGame => {
+        theGame.update({
+          name: _.startCase(_.lowerCase(req.body.name)),
+          designer: _.startCase(_.lowerCase(req.body.designer)),
+          publisher: _.startCase(_.lowerCase(req.body.publisher)),
+          play_time: `${req.body.playTime}min`,
+          player_range: req.body.numPlayers
+        });
+      })
+      .then(updated => {
+        res.render('submit-success', {})
       });
     });
 
