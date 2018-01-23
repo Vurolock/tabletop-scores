@@ -1,9 +1,46 @@
+html {
+	box-sizing: border-box;
+}
+
+*, *:before, *:after {
+	box-sizing: inherit;
+}
+
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+	padding: 50px;
+	font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 a {
-  color: #00B7FF;
+	color: #00B7FF;
 }
 
+/* ~~~ Index - Logged in ~~~ */
+
+
+/* ~~~ Index - Logged out ~~~ */
+
+.small-welcome {
+	display: none;
+}
+
+@media screen and (max-width: 605px) {
+	.logged-out {
+		margin: auto;
+		width: 220px;
+		display: flex;
+		flex-direction: column;
+	}
+	
+	.goog-sign-in {
+		width: 220px;
+	}
+
+	.small-welcome {
+		display: block;
+	}
+
+	.big-welcome {
+		display: none;
+	}
+}
