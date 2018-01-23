@@ -7,67 +7,73 @@ const Session = require('../models/session');
 
 /* GET home page. */
 router.route('/')
-  .get((req, res, next) => {
-  res.render('index', { title: 'Tabletop Scores' });
-});
-
+	.get((req, res, next) => {
+		Player.findOne({
+			where: {
+				id: req.user
+			}
+		}).then((result) => {
+			res.render('index', {
+				name: result.name,
+			});
+		});
+	});
 
 // Setting up routes
 router.route('/scores?')
-  .get((req, res) => {
-    Score.findAll({include: [
-      {model: Player, required: true},
-      {model: Session, required: true},
-      {model: Game, required: true}
-    ]
-  })
+  	.get((req, res) => {
+    	Score.findAll({include: [
+      		{model: Player, required: true},
+      		{model: Session, required: true},
+      		{model: Game, required: true}
+    	]
+  	})
     .then(allScores => {
-      res.render('score-list', {
-        title: 'Scores',
-        scores: allScores
-      });
+      	res.render('score-list', {
+        	title: 'Scores',
+        	scores: allScores
+      	});
     });
-  })
-  
+});
+
 
 router.route('/players')
     .get((req, res) => {
-      Player.findAll()
-        .then(playas => {
-          res.json(playas);
-        });
+      	Player.findAll()
+        	.then(playas => {
+          		res.json(playas);
+        	});
     });
     
 
 router.route('/session/new')
-  .get((req, res) => {
-    Game.findAll()
-    .then(g => {
-      res.render('session-form', {
-        title: 'Log New Session',
-        games: g
-      });
-    });
-  })
-  .post((req, res) => {
-    console.log(req.body)
-    Session.create({
-      gameId: req.body.gameId
-    })
-      .then((sesh) => {
-        for (let i = 0; i < req.body.score.length; i++) {
-          Score.create({
-            score: req.body.score[i],
-            playerId: req.body.name[i],
-            sessionId: sesh.id,
-            gameId: req.body.gameId
-          });
-        }
-      })
-      .then(() => {
-        res.render('submit-success', {});
-      });
-  });;
-
+  	.get((req, res) => {
+    	Game.findAll()
+    		.then(g => {
+      			res.render('session-form', {
+        			title: 'Log New Session',
+        			games: g
+      			});
+    		});
+  	})
+  	.post((req, res) => {
+    	console.log(req.body)
+    	Session.create({
+      		gameId: req.body.gameId
+    	})
+      	.then((sesh) => {
+        	for (let i = 0; i < req.body.score.length; i++) {
+          		Score.create({
+            		score: req.body.score[i],
+            		playerId: req.body.name[i],
+            		sessionId: sesh.id,
+            		gameId: req.body.gameId
+          		});
+        	}
+      	})
+      	.then(() => {
+        	res.render('submit-success', {});
+      	});
+  	});
 
 module.exports = router;
