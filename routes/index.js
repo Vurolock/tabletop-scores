@@ -63,7 +63,7 @@ router.route('/game/new')
         player_range: req.body.numPlayers
       })
       .then(() => {
-        res.render('submit-success', {});
+        res.redirect('/session/new');
       });
     });
 
