@@ -1,10 +1,26 @@
 <h1>{{name}}</h1>
 
+<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+    
+        {{#each session}}
+        <div class="panel panel-default custom-panel">
+            <div class="panel-heading" role="tab" id="heading{{sessionId}}">
+                <h4 class="panel-title">
+                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse{{sessionId}}" aria-expanded="true" aria-controls="collapse{{sessionId}}">
+                        <p>
+                            <strong>{{game.name}}</strong> | {{createdAt}} |  <strong>Score:</strong> {{score}}
+                        </p>
+                    </a>
+                </h4>
+            </div>
+            <div id="collapse{{sessionId}}" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading{{sessionId}}">
+                <div class="panel-body">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sed commodi est voluptatum sequi ut, repudiandae beatae velit similique minima tempora sit ipsam tenetur magni, possimus quos earum provident! Atque, delectus!
+                </div>
 
-<div class="scores-container" data-score-container>
-    {{#each session}}
-    <h3>{{game.name}}</h3>
-    <p>Score: {{score}}</p>
-    <p>Date: {{createdAt}}</p>
-    {{/each}}
+            </div>
+
+        </div>
+        {{/each}}
+    
 </div>

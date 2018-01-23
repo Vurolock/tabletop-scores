@@ -24,13 +24,7 @@ router.route('/scores')
   })
   .then(scores => {
     res.json(scores);
-  })
-    // .then(allScores => {
-    //   res.render('score-list', {
-    //     title: 'Scores',
-    //     scores: allScores
-    //   });
-    // });
+    })
   });
 
 router.route('/games?')
@@ -50,7 +44,7 @@ router.route('/players')
         });
     });
 
-  router.route('/player/:id')
+  router.route('/players?/:id')
     .get((req, res) => {
       Score.findAll({include: [
         {model: Player, required: true},
@@ -59,15 +53,18 @@ router.route('/players')
       ],
       where: {
         playerId: req.params.id
-      }
+      },
+      order: [
+        ['createdAt', 'DESC']
+      ]
       })
       .then(result => {
         res.render('player-profile', {
           name: result[0].player.name,
           session: result
-        })
-      })
-    })
+        });
+      });
+    });
 
 
 router.route('/game/new')

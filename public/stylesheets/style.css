@@ -15,5 +15,8 @@ a {
   /* border: solid .5px gray; */
   padding: 35px;
   box-shadow: 0 2px rgba(161, 161, 161, 0.603);
+}
 
+.custom-panel {
+  margin: 15px 0 15px 0;
 }
