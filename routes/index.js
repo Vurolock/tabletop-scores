@@ -48,7 +48,7 @@ router.route('/games?')
   })
   
 
-router.route('/players')
+router.route('/users')
     .get((req, res) => {
       Player.findAll({
         order: [
@@ -59,6 +59,19 @@ router.route('/players')
           res.json(playas);
         });
     });
+
+
+  router.route('/players?')
+    .get((req, res) => {
+      Player.findAll()
+        .then(playas => {
+          res.render('player-list', {
+          title: 'Players',
+          player: playas
+          });
+        });
+      });
+
 
   router.route('/players?/:id')
     .get((req, res) => {

@@ -6,7 +6,7 @@ const $playerGroup = $('[data-player-info]');
 // const $playerRowTarget = $('div[data-player-row]')
 // const $dataList = $('#playerList');
 
-$.get('/players')
+$.get('/users')
     .then((data) => {
         let playerNames = data.map(entry => {
             return $userSelect.append(`<option value=${entry.id}>${entry.name}</option>`)
