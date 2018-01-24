@@ -1,0 +1,14 @@
+<h1>{{title}}</h1>
+<a href="/game/new">Add a game!</a>
+<div class="row">
+    {{#each game}}
+    <div class="col-sm-4 text-center each-game">
+        <h3>{{name}}</h3>
+        <p>Designer: {{designer}}</p>
+        <p>Publisher: {{publisher}}</p>
+        <p>Play Time: {{play_time}}</p>
+        <p># Players: {{player_range}}</p>
+        <a href="/game/update/{{id}}">Update {{name}}</a>
+    </div>
+    {{/each}}
+</div>

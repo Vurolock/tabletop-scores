@@ -43,9 +43,12 @@ router.route('/games?')
   .get((req, res) => {
     Game.findAll()
     .then(g => {
-      res.json(g);
-    })
-  })
+      res.render('game-list', {
+        title: 'Game List',
+        game: g
+      });
+    });
+  });
   
 
 router.route('/users')
@@ -129,8 +132,7 @@ router.route('/game/update/:id')
         }
       })
       .then(theGame => {
-        res.render('game-form', {
-          action: '/update/',
+        res.render('game-update-form', {
           id: req.params.id,
           title: 'Update Game',
           name: theGame.name,
