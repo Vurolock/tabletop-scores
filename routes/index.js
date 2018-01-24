@@ -27,8 +27,8 @@ router.route('/')
 					res.render('index', {
 						name: result[0].player.name,
 						session: result,
-						  id: result[0].player.id,
-						  auth: req.user
+						id: result[0].player.id,
+            auth: req.user
 					});
 				} else {
 					Player.findOne({
