@@ -20,12 +20,14 @@ let filterData = theData => {
             if (userId === obj.player.id || obj.player.id === homePageId) {
                 targetDiv.append(`<div class="current-player">
                                       <div class="session-player-name">${obj.player.name}</div>
-                                      <div class="session-player-score">${obj.score}</div>
+                                      <div class="session-player-score"><span>${obj.score}</span></div>
+                                      <div class="empty"></div>
                                   </div>`);
             } else {
                 targetDiv.append(`<div class="other-player">
                                       <div class="session-player-name">${obj.player.name}</div>
-                                      <div class="session-player-score">${obj.score}</div>
+                                      <div class="session-player-score"><span>${obj.score}</span></div>
+                                      <div class="empty"></div>
                                   </div>`);
             }
         }); 

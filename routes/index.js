@@ -5,6 +5,7 @@ const Game = require('../models/game');
 const Player = require('../models/player');
 const Session = require('../models/session');
 const _ = require('lodash');
+const ensureAuthenticated = require('../auth').ensureAuthenticated;
 
 /* GET home page. */
 router.route('/')
@@ -26,7 +27,8 @@ router.route('/')
 					res.render('index', {
 						name: result[0].player.name,
 						session: result,
-          				id: result[0].player.id
+						  id: result[0].player.id,
+						  auth: req.user
 					});
 				} else {
 					Player.findOne({
@@ -36,6 +38,7 @@ router.route('/')
 					}).then((result) => {
 						res.render('index', {
 							name: result.name,
+							auth: req.user
 						});
 					});
 				}
@@ -45,8 +48,9 @@ router.route('/')
 		}
 	});
 
-
 // Routes
+router.all('*', ensureAuthenticated);
+
 router.route('/scores')
   .get((req, res) => {
     Score.findAll({include: [
@@ -66,7 +70,8 @@ router.route('/games?')
     .then(g => {
       res.render('game-list', {
         title: 'Game List',
-        game: g
+		game: g,
+		auth: req.user
       });
     });
   });
@@ -95,7 +100,8 @@ router.route('/users')
         .then(playas => {
           res.render('player-list', {
           title: 'Players',
-          player: playas
+		  player: playas,
+		  auth: req.user
           });
         });
       });
@@ -119,7 +125,8 @@ router.route('/users')
         res.render('player-profile', {
           name: result[0].player.name,
           session: result,
-          id: req.params.id
+		  id: req.params.id,
+		  auth: req.user
         });
       });
     });
@@ -128,7 +135,8 @@ router.route('/users')
 router.route('/game/new')
     .get((req, res) => {
       res.render('game-form', {
-        title: 'Enter New Game'
+		title: 'Enter New Game',
+		auth: req.user
       });
     })
     .post((req, res) => {
@@ -140,7 +148,9 @@ router.route('/game/new')
         player_range: req.body.numPlayers
       })
       .then(() => {
-        res.render('submit-success');
+        res.render('submit-success', {
+			auth: req.user
+		});
       });
     });
 
@@ -160,7 +170,8 @@ router.route('/game/update/:id')
           designer: theGame.designer,
           publisher: theGame.publisher,
           playTime: theGame.play_time,
-          playerRange: theGame.player_range
+		  playerRange: theGame.player_range,
+		  auth: req.user
         });
       });
     })
@@ -180,7 +191,9 @@ router.route('/game/update/:id')
         });
       })
       .then(updated => {
-        res.render('submit-success', {})
+        res.render('submit-success', {
+			auth: req.user
+		})
       });
     });
 
@@ -191,7 +204,8 @@ router.route('/session/new')
     .then(g => {
       res.render('session-form', {
         title: 'Log New Session',
-        games: g
+		games: g,
+		auth: req.user
       });
     });
   })
@@ -212,7 +226,9 @@ router.route('/session/new')
         }
       })
       .then(() => {
-        res.render('submit-success', {});
+        res.render('submit-success', {
+			auth: req.user
+		});
       });
   });;
 

@@ -10,6 +10,9 @@ const Player = sequelize.define('player', {
     },
     google_id: {
         type: Sequelize.STRING
+    },
+    createdAt: {
+        type: Sequelize.DATEONLY
     }
 });
 
