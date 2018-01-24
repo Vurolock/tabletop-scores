@@ -3,7 +3,7 @@
     <form action="/session/new" method="POST" class="needs-validation">
         <div class="form-group">
             <label for="game">Choose your game:</label>
-                <select multiple name="gameId" id="game" class="form-control" size="8" required>
+                <select name="gameId" id="game" class="form-control" size="8" required>
                     {{#each games}}
                     <option value={{id}}>{{name}}</option>
                     {{/each}}
