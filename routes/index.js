@@ -19,14 +19,14 @@ router.route('/')
 					playerId: req.user
 				},
 				order: [
-					['createdAt', 'DESC']
+					['updatedAt', 'DESC']
 				]
 			}).then((result) => {
 				if (result[0] != undefined) {
 					res.render('index', {
 						name: result[0].player.name,
 						session: result,
-          				id: req.params.id
+          				id: result[0].player.id
 					});
 				} else {
 					Player.findOne({
