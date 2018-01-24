@@ -63,14 +63,28 @@ a {
 	}
 }
 
-/* SESSIONS CONTAINER */
+/* SESSIONS */
 
-.sessions-container {
-
-}
-.session-info {
+.session-info, .current-player, .other-player  {
 	display: flex;
 	justify-content: space-between;
+}
+
+.panel-title > a {
+	text-decoration: none;
+}
+
+.session-game-name {
+	font-weight: bold;
+	width: 50%;
+}
+
+.session-score {
+	width: 15%;
+}
+
+.session-date {
+	width: 15%;
 }
 
 /* FORM */
@@ -93,4 +107,3 @@ a {
   border-bottom: solid black 1.5px;
   box-shadow: 0 2em gray;
 }
-
