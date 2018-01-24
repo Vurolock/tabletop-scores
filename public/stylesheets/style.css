@@ -53,16 +53,6 @@ a {
 	border-radius: 50%;
 }
 
-@media screen and (max-width: 605px) {
-	.logged-out, .logged-in {
-		width: 220px;
-	}
-
-	.welcome {
-		font-size: 21px;
-	}
-}
-
 /* SESSIONS */
 
 .session-info, .current-player, .other-player  {
@@ -79,11 +69,7 @@ a {
 	width: 50%;
 }
 
-.session-score {
-	width: 15%;
-}
-
-.session-date {
+.session-score, .session-date, .session-player-score, .empty {
 	width: 15%;
 }
 
@@ -100,11 +86,16 @@ a {
 }
 
 .session-player-name {
-	width: 65%;
+	width: 50%;
 }
 
 .session-player-score {
-	width: 35%;
+	position: relative;
+}
+
+.session-player-score > span {
+	position: absolute;
+	left: 55px;
 }
 
 /* FORM */
@@ -151,4 +142,50 @@ form {
 
 .each-game {
 	margin: 25px 0;
+}
+
+@media screen and (max-width: 800px) {
+
+	h2 {
+		font-size: 18px;
+	}
+	
+	.session-info {
+		display: block;
+	}
+
+	.session-date, .session-game-name, .session-score {
+		width: 100%;
+	}
+
+	.empty {
+		display: none;
+	}
+
+	.session-player-score > span {
+		position: absolute;
+		left: 0;
+	}
+
+	.session-player-name {
+		width: 75%;
+	}
+
+	.session-player-score {
+		width: 25%;
+	}
+}
+
+@media screen and (max-width: 605px) {
+	.logged-out, .logged-in {
+		width: 220px;
+	}
+
+	.welcome {
+		font-size: 21px;
+	}
+
+	.form-entry {
+		padding: 35px 0;
+	}
 }
