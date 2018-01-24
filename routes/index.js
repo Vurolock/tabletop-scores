@@ -10,14 +10,35 @@ const _ = require('lodash');
 router.route('/')
 	.get((req, res, next) => {
 		if (req.isAuthenticated()) {
-			Player.findOne({
+			Score.findAll({include: [
+				{model: Player, required: true},
+				{model: Session, required: true},
+				{model: Game, required: true}
+			],
 				where: {
-					id: req.user
-				}
+					playerId: req.user
+				},
+				order: [
+					['updatedAt', 'DESC']
+				]
 			}).then((result) => {
-				res.render('index', {
-					name: result.name,
-				});
+				if (result[0] != undefined) {
+					res.render('index', {
+						name: result[0].player.name,
+						session: result,
+          				id: result[0].player.id
+					});
+				} else {
+					Player.findOne({
+						where: {
+							id: req.user
+						}
+					}).then((result) => {
+						res.render('index', {
+							name: result.name,
+						});
+					});
+				}
 			});
 		} else {
 			res.render('index');

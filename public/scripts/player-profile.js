@@ -1,23 +1,33 @@
 const $userTarget = $('[data-user]');
 const $otherUsers = $('[data-dropdown]');
 const $accordion = $('#accordion');
-
+const $homePageUser = $('[data-home-user]');
 
 let filterData = theData => {
-    let userId = $userTarget.attr('data-user-id');
-    userId = Number(userId);
     const $sessionElements = $('[data-session]');
-    $sessionElements.each((index, $element) => {
-        $element = $($element);
-        let sessionId = $element.attr('sessionId');
-        sessionId = Number(sessionId);
-        let filteredScores = theData
-                            .filter((obj) => userId != obj.player.id)
-                            .filter((obj) => sessionId == obj.session.id)
-        console.log(filteredScores);
-        filteredScores.forEach(obj => {
+    let userId = Number($userTarget.attr('data-user-id'));
+    let homePageId = Number($homePageUser.attr('home-id'));
+
+    $sessionElements.each((index, element) => {
+        let $element = $(element);
+        let sessionId = Number($element.attr('sessionId'));
+        let filteredScores = theData.filter((obj) => sessionId == obj.session.id);
+        let orderedScores = _.sortBy(filteredScores, 'score').reverse();
+
+        orderedScores.forEach(obj => {
             let targetDiv = $element.find('[data-dropdown]');
-            targetDiv.append(`<p>${obj.player.name} | ${obj.score}`);
+
+            if (userId === obj.player.id || obj.player.id === homePageId) {
+                targetDiv.append(`<div class="current-player">
+                                      <div class="session-player-name">${obj.player.name}</div>
+                                      <div class="session-player-score">${obj.score}</div>
+                                  </div>`);
+            } else {
+                targetDiv.append(`<div class="other-player">
+                                      <div class="session-player-name">${obj.player.name}</div>
+                                      <div class="session-player-score">${obj.score}</div>
+                                  </div>`);
+            }
         }); 
     }); 
 }

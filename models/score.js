@@ -8,6 +8,9 @@ const Game = require('./game');
 const Score = sequelize.define('score', {
     score: {
         type: Sequelize.INTEGER
+    },
+    createdAt: {
+        type: Sequelize.DATEONLY
     }
 });
 
