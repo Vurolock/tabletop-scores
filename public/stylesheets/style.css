@@ -87,6 +87,26 @@ a {
 	width: 15%;
 }
 
+.panel-body {
+	padding: 7px 0;
+}
+
+.current-player, .other-player {
+	padding: 3px 25px;
+}
+
+.current-player {
+	background-color: #eeeeee;
+}
+
+.session-player-name {
+	width: 65%;
+}
+
+.session-player-score {
+	width: 35%;
+}
+
 /* FORM */
 
 .form-entry {

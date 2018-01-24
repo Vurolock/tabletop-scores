@@ -12,8 +12,9 @@ let filterData = theData => {
         let $element = $(element);
         let sessionId = Number($element.attr('sessionId'));
         let filteredScores = theData.filter((obj) => sessionId == obj.session.id);
+        let orderedScores = _.sortBy(filteredScores, 'score').reverse();
 
-        filteredScores.forEach(obj => {
+        orderedScores.forEach(obj => {
             let targetDiv = $element.find('[data-dropdown]');
 
             if (userId === obj.player.id || obj.player.id === homePageId) {
