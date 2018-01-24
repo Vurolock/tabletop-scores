@@ -43,12 +43,15 @@ router.route('/games?')
   .get((req, res) => {
     Game.findAll()
     .then(g => {
-      res.json(g);
-    })
-  })
+      res.render('game-list', {
+        title: 'Game List',
+        game: g
+      });
+    });
+  });
   
 
-router.route('/players')
+router.route('/users')
     .get((req, res) => {
       Player.findAll({
         order: [
@@ -59,6 +62,23 @@ router.route('/players')
           res.json(playas);
         });
     });
+
+
+  router.route('/players?')
+    .get((req, res) => {
+      Player.findAll({
+        order: [
+          ['name', 'ASC']
+        ]
+      })
+        .then(playas => {
+          res.render('player-list', {
+          title: 'Players',
+          player: playas
+          });
+        });
+      });
+
 
   router.route('/players?/:id')
     .get((req, res) => {
@@ -92,7 +112,6 @@ router.route('/game/new')
     })
     .post((req, res) => {
       Game.create({
-        action: 'new',
         name: _.startCase(_.lowerCase(req.body.name)),
         designer: _.startCase(_.lowerCase(req.body.designer)),
         publisher: _.startCase(_.lowerCase(req.body.publisher)),
@@ -100,7 +119,7 @@ router.route('/game/new')
         player_range: req.body.numPlayers
       })
       .then(() => {
-        res.redirect('/session/new');
+        res.render('submit-success');
       });
     });
 
@@ -113,8 +132,7 @@ router.route('/game/update/:id')
         }
       })
       .then(theGame => {
-        res.render('game-form', {
-          action: 'update',
+        res.render('game-update-form', {
           id: req.params.id,
           title: 'Update Game',
           name: theGame.name,

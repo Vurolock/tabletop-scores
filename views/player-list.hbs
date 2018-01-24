@@ -1,0 +1,9 @@
+<h1>{{title}}</h1>
+{{#each player}}
+<div class="each-player">
+    <h3>{{name}}</h3>
+    <p>{{email}}</p>
+    <p>Joined: {{createdAt}}</p>
+    <a href="/player/{{id}}" class="to-sessions">-------></a>
+</div>
+{{/each}}
