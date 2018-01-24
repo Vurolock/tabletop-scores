@@ -63,6 +63,18 @@ a {
 	}
 }
 
+/* SESSIONS CONTAINER */
+
+.sessions-container {
+
+}
+.session-info {
+	display: flex;
+	justify-content: space-between;
+}
+
+/* FORM */
+
 .form-entry {
   display: flex;
   width: 70%;

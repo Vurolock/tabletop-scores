@@ -1,0 +1,25 @@
+<h2>Recent Sessions</h2>
+
+<div class="sessions-container">
+    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+            {{#each session}}
+            <div class="panel panel-default custom-panel" sessionId={{sessionId}} data-session>
+                <div class="panel-heading" role="tab" id="heading{{sessionId}}">
+                    <h4 class="panel-title">
+                        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse{{sessionId}}" aria-expanded="false" aria-controls="collapse{{sessionId}}">
+                            <div class="session-info">
+                                <div>{{game.name}}</div>
+                                <div>Score: {{score}}</div>
+                                <div>{{createdAt}}</div>
+                            </div>
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapse{{sessionId}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading{{sessionId}}">
+                    <div class="panel-body" sessionId="{{sessionId}}" data-dropdown>
+                    </div>
+                </div>
+            </div>
+            {{/each}}
+    </div>
+</div>
