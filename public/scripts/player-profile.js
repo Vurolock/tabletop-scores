@@ -4,10 +4,11 @@ const $accordion = $('#accordion');
 const $homePageUser = $('[data-home-user]');
 const $playerLevel = $('[data-player-level]');
 
+let userId = Number($userTarget.attr('data-user-id'));
+let homePageId = Number($homePageUser.attr('home-id'));
+
 let filterData = theData => {
     const $sessionElements = $('[data-session]');
-    let userId = Number($userTarget.attr('data-user-id'));
-    let homePageId = Number($homePageUser.attr('home-id'));
 
     $sessionElements.each((index, element) => {
         let $element = $(element);
@@ -36,8 +37,7 @@ let filterData = theData => {
 }
 
 let makePlayerLevel = (theData) => {
-    const homePageUserId = Number($homePageUser.attr('home-id'));
-    let filteredData = theData.filter(obj => homePageUserId == obj.player.id);
+    let filteredData = theData.filter(obj => homePageId == obj.player.id || userId == obj.player.id);
     let filterLength = filteredData.length;
     if (filterLength <= 0) {
         $playerLevel.text(`Level 0 Pissboy`);
