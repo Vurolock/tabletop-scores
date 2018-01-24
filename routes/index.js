@@ -63,7 +63,11 @@ router.route('/users')
 
   router.route('/players?')
     .get((req, res) => {
-      Player.findAll()
+      Player.findAll({
+        order: [
+          ['name', 'ASC']
+        ]
+      })
         .then(playas => {
           res.render('player-list', {
           title: 'Players',
