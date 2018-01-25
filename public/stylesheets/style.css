@@ -177,12 +177,18 @@ form {
 }
 
 @media screen and (max-width: 605px) {
+
+	body {
+		padding: 50px 20px;
+	}
+	
 	.logged-out, .logged-in {
 		width: 220px;
 	}
 
 	.welcome {
 		font-size: 21px;
+		text-align: center;
 	}
 
 	.form-entry {
