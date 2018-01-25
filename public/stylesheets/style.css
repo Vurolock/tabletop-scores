@@ -189,3 +189,36 @@ form {
 		padding: 35px 0;
 	}
 }
+
+#message-container {
+	position: fixed;
+	bottom: 0;
+	width: 30%;
+	height: 35%;
+	border: solid black 3px;
+	display: flex;
+}
+
+#message-form {
+	position: fixed;
+	bottom: 0;
+	width: 25%;
+	display: flex;
+}
+
+#messages {
+	padding: 0;
+}
+
+#messages li { 
+	padding: 5px 10px;
+	list-style-type: none;
+}
+
+#m {
+	width: 85%;
+}
+
+#chat-btn {
+	display: inline;
+}
