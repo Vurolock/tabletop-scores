@@ -124,26 +124,40 @@ router.route('/players?')
 router.route('/players?/:id')
 	.all(ensureAuthenticated)
     .get((req, res) => {
-      	Score.findAll({include: [
-        	{model: Player, required: true},
-        	{model: Session, required: true},
-        	{model: Game, required: true}
-      	],
-      		where: {
-        		playerId: req.params.id
-      		},
-      		order: [
-        		['createdAt', 'DESC']
-      		]
-      	})
-      	.then(result => {
-        	res.render('player-profile', {
-        		name: result[0].player.name,
-        		session: result,
-				id: req.params.id,
-				auth: req.user
-        	});
-      	});
+      Score.findAll({include: [
+        {model: Player, required: true},
+        {model: Session, required: true},
+        {model: Game, required: true}
+      ],
+      where: {
+        playerId: req.params.id
+      },
+      order: [
+        ['createdAt', 'DESC']
+      ]
+      })
+      .then(result => {
+        if (result[0]) {
+          res.render('player-profile', {
+            name: result[0].player.name,
+            session: result,
+		        id: req.params.id,
+		        auth: req.user
+          });
+        } else {
+          Player.findOne({
+            where: {
+              id: req.params.id
+            }
+          })
+          .then(playa => {
+            res.render('player-profile', {
+              name: playa.name,
+              status: 'This player has no games logged.'
+            });
+          });
+        }
+      });
     });
 
 
