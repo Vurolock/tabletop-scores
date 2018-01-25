@@ -14,10 +14,11 @@ const setupAuth = (app) => {
         saveUninitialized: true
     }));
 
+    // callbackURL: process.env.CALLBACK_URL
     passport.use(new GoogleStrategy({
         clientID: process.env.CLIENT_ID,
         clientSecret: process.env.CLIENT_SECRET,
-        callbackURL: "http://localhost:3000/auth/google/callback"
+        callbackURL: process.env.CALLBACK_URL
     }, (accessToken, refreshToken, profile, done) => {
         
         Player.findOrCreate({ where: {
