@@ -22,7 +22,6 @@
     "pg": "^6.4.2",
     "pg-hstore": "^2.3.2",
     "sequelize": "^4.31.2",
-    "serve-favicon": "~2.4.5",
-    "socket.io": "^2.0.4"
+    "serve-favicon": "~2.4.5"
   }
 }
