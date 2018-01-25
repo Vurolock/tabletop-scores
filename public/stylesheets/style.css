@@ -162,17 +162,12 @@ form {
 	padding-top: 30px;
 }
 
-footer {
-	width: 82%;
-	height: 35px;
-	position: absolute;
-	bottom: 0;
-	display: flex;
-	justify-content: center;
-}
-
 .github {
-	width: 25px;
+	width: 30px;
+	position: absolute;
+	top: 10px;
+	left: 170px;
+	border-radius: 50%;
 }
 
 @media screen and (max-width: 800px) {
