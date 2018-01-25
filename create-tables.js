@@ -18,20 +18,23 @@ Player.sync({ force: true })
     })
     .then(() => {
         return Player.create({
-            name: 'Seth Zim',
-            email: 'hello@gg.com'
+            name: 'Bob McBobby',
+            email: 'BobtheBlob@gmail.com',
+            createdAt: "2018-01-01"
         });
     })
     .then(() => {
         return Player.create({
-            name: 'Andrew Kel',
-            email: 'adrew@gg.com'
+            name: 'Daenerys Targaryen',
+            email: 'DaniDragon@gmail.com',
+            createdAt: "1996-10-01"
         });
     })
     .then(() => {
         return Player.create({
-            name: "Bob",
-            email: 'bob@bob.com'
+            name: 'Donald Trump',
+            email: 'NotSmallHands@gmail.com',
+            createdAt: '1946-6-14'
         })
     })
     .then(() => {
@@ -78,6 +81,14 @@ Player.sync({ force: true })
         return Score.create({
             score: 22,
             playerId: 1,
+            sessionId: 1,
+            gameId: 1
+        });
+    })
+    .then(() => {
+        return Score.create({
+            score: 69,
+            playerId: 3,
             sessionId: 1,
             gameId: 1
         });
