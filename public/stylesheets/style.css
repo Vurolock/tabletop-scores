@@ -144,6 +144,37 @@ form {
 	margin: 25px 0;
 }
 
+/* IMAGES */
+
+.screenshots {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	text-align: center;
+}
+
+.screenshots > img {
+	border: 3px solid rgb(177, 168, 168);
+	border-radius: 10px;
+}
+
+.screenshots > h3 {
+	padding-top: 30px;
+}
+
+footer {
+	width: 82%;
+	height: 35px;
+	position: absolute;
+	bottom: 0;
+	display: flex;
+	justify-content: center;
+}
+
+.github {
+	width: 25px;
+}
+
 @media screen and (max-width: 800px) {
 
 	h2 {
@@ -187,11 +218,19 @@ form {
 	}
 
 	.welcome {
-		font-size: 21px;
+		font-size: 27px;
 		text-align: center;
 	}
 
 	.form-entry {
 		padding: 35px 0;
+	}
+
+	.screenshots > img {
+		width: 280px;
+	}
+
+	h3 {
+		font-size: 20px;
 	}
 }
