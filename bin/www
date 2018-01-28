@@ -8,6 +8,7 @@ require('dotenv').config();
 var app = require('../app');
 var debug = require('debug')('tabletop-scores:server');
 var http = require('http');
+const Message = require('../models/message');
 
 /**
  * Get port from environment and store in Express.
@@ -37,12 +38,22 @@ server.on('listening', onListening);
  * Normalize a port into a number, string, or false.
  */
 
- io.on('connection', socket => {
-   console.log('a user connected!!!!!!!!!!!!!!');
-   socket.on('message', msg => {
-     io.emit('message', msg);
-   });
- });
+io.on('connection', socket => {
+  console.log('a user connected!!!!!!!!!!!!!!');
+  socket.on('message', msg => {
+
+    Message.findAll()
+      .then(messages => {
+        socket.emit('chatHistory', messages)
+      });
+
+    Message.create({
+      message: msg
+    });
+
+    io.emit('message', msg);
+  });
+});
 
 function normalizePort(val) {
   var port = parseInt(val, 10);
@@ -99,3 +110,5 @@ function onListening() {
     : 'port ' + addr.port;
   debug('Listening on ' + bind);
 }
+
+module.exports = server;

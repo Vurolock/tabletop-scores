@@ -12,5 +12,12 @@ $(() => {
 
     socket.on('message', msg => {
         $msgBox.append($('<li>').text(msg));
-    })
+    });
+
+    socket.on('chatHistory', messages => {
+        $msgBox.find('li').remove();
+        messages.forEach(m => {
+            $msgBox.append(`<li>${m.message}</li>`);
+        })
+    });
 });
